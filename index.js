@@ -184,7 +184,7 @@ $(function(){
     // 界面刷新时自动载入之前的数据
     function reload(todos){
         todos.forEach(obj => {
-           genNewTodo(obj.label, obj.value, obj.time, obj.status);
+           genNewTodo(obj.label, obj.value, obj.time, obj.status, obj.id);
         });
     }
     
@@ -222,10 +222,7 @@ $(function(){
     function findJsonObj($li){
 
         for(let i=0; i<todos.length; i++){
-            if($li.attr('data-label') == todos[i].label &&
-            $li.attr('data-value') == todos[i].value &&
-            $li.attr('data-time') == todos[i].time &&
-            $li.attr('data-status') == todos[i].status){
+            if($li.attr('data-id') == todos[i].id){
                 return i;
             }
         }
@@ -242,7 +239,6 @@ $(function(){
                 // 找到所在的列表项
                 let $li = $(this).parentsUntil('.unfinish_list').eq(1);
                 let  obj_index = findJsonObj($li);
-                // console.log(obj_index);
                 todos[obj_index].status = 1;
                 save(todos);
 
@@ -253,6 +249,10 @@ $(function(){
                 // 取消已选中状态，利用删除属性来实现
                 $(this).removeAttr('checked');
                 $li.removeClass('selected');
+                let $show = $li.find('.triangle');
+                if($show.attr('data-click') == 1){
+                    $show.trigger('click');
+                }
                 $('.finished_list').append($li);
 
 
@@ -279,6 +279,7 @@ $(function(){
 
         // 下面这个方法这里无法删除 原因未知
         // $('.finished_list').remove('.selected');
+
         $checked = $('.unfinish_list .todo_check:checked');
         if ($checked.length){
             // 确认一下是否删除未完成的任务
@@ -300,8 +301,8 @@ $(function(){
         
     })
 
-    // 生成一个待办事项 status表示是否完成，用数字表示是因为布尔值在字符串容易出问题
-    function genNewTodo(label, value, time=null, status=0){
+    // 生成一个待办事项 status表示是否完成，用数字表示是因为布尔值在字符串容易出问题 id表示该列表项的标识符
+    function genNewTodo(label, value, time=null, status=0, id=null){
         let $li = $(`<li></li>`);
         $li.addClass('todo_list_item');
         // 添加列表项的第一行
@@ -314,9 +315,9 @@ $(function(){
         let $show = $(`<span></span>`);
         $show.addClass('triangle');
         // 记录当前是展开还是收起状态
-        $show.attr('data-click', false);
+        $show.attr('data-click', 0);
 
-        console.log($show.attr('data-click'));
+        // console.log($show.attr('data-click'));
         $span.append($show);
         $span.append($check);
         
@@ -334,9 +335,9 @@ $(function(){
         $li.append($div);
         // 下拉展示
         $show.click(function(){
-            if ($(this).attr('data-click') === 'false'){
+            if ($(this).attr('data-click') == 0){
                 $li.children().eq(1).stop().slideDown();
-                $(this).attr('data-click', true);
+                $(this).attr('data-click', 1);
                 $(this).css({
                     marginTop: -5 + 'px',
                     border: '8px solid transparent',
@@ -345,7 +346,7 @@ $(function(){
             }
             else {
                 $li.children().eq(1).stop().slideUp();
-                $(this).attr('data-click', false);
+                $(this).attr('data-click', 0);
                 $(this).css({
                     marginTop: 4 + 'px',
                     border: '8px solid transparent',
@@ -353,11 +354,13 @@ $(function(){
                 })
             }
         })
-        // 将这个列表项的信息作为属性保存，方便访问
-        $li.attr('data-label', label);
-        $li.attr('data-value', value);
-        $li.attr('data-time', now_time);
-        $li.attr('data-status', status);
+        // 建立一个标识符，这样在操作列表项时，能够在json对象中快速找到该目标
+        if(!id){
+            id = new Date().getTime();
+        }
+        $li.attr('data-id', id);
+
+        // $li.attr('data-symbol', symbol);
 
         if(status == 0){   
             $('.unfinish_list').prepend($li);
@@ -372,6 +375,7 @@ $(function(){
             value,
             time: now_time,
             status,
+            id
         };
     }
 

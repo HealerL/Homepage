@@ -71,7 +71,7 @@
 
 
 
-9.  `'false' == false` 会返回false，即字符串时与布尔值不相等，要注意。
+9.  `'false' == false` 会返回false，即字符串时与布尔值不相等，要注意。将布尔值添加为DOM元素的一个属性值时，读取会变成字符串格式，导致判断出错，因此可以使用数字标识加上`==`来进行判断。
 
 
 
@@ -80,6 +80,35 @@
 10.  用JSON保存TO DO中项目的内容：标签，备注，时间，以及状态（是否完成）
 
 
+
+11. 想尝试将symbol作为DOM元素属性，就能够快速找到符合条件的指定元素。但DOM属性是字符串形式，所以无法作为属性值添加。
+
+    使用`new Date().getTime()`来生成一个标识符，通过标识符就可以在JSON对象数组中快速找到进行操作的列表对象。
+
+    ```javascript
+    // 建立一个标识符，这样在操作列表项时，能够在json对象中快速找到该目标
+    if(!id){
+        id = new Date().getTime();
+    }
+    $li.attr('data-id', id);
+    ```
+
+    ```javascript
+    // 根据输入的jq对象，找到属性列表中对应的属性对象
+    function findJsonObj($li){
+    
+        for(let i=0; i<todos.length; i++){
+            if($li.attr('data-id') == todos[i].id){
+                return i;
+            }
+        }
+        return -1;
+    }
+    ```
+
+    
+
+​	
 
 
 
