@@ -158,9 +158,53 @@ $(function(){
         $('.pointer').children().eq(img_index).addClass('current_point');
     })
 
+    let todos = gennerateTodo_storage();
+    // 不会实时更新，所以每次都要保存localStorage
+    function gennerateTodo_storage(){
+        let todos;
+        if(localStorage.hasOwnProperty('todos')){
+            todos = JSON.parse(localStorage.getItem('todos'));
+            // todos = localStorage.getItem('todos');
+        }
+        else{
+            todos = [];
+        }
+        return todos;
+        // if(localStorage.hasOwnProperty('fin_todos')){
+        //     un_todos = JSON.parse(localStorage.getItem('fin_todos'));
+        // }
+        // else{
+        //     un_todos = [];
+        //     // 不会实时更新，所以每次都要保存
+        //     localStorage.setItem('un_todos', JSON.stringify(un_todos));
+        // }
+    }
+
+    console.log(todos);
+    // 界面刷新时自动载入之前的数据
+    function reload(todos){
+        todos.forEach(obj => {
+           genNewTodo(obj.label, obj.value, obj.time, obj.status);
+        });
+    }
+    
+    reload(todos);
+
+    function save(todos){
+        localStorage.setItem('todos', JSON.stringify(todos));
+    }
+
+
+    // if(localStorage)
+    // let un_todos = JSON.parse(localStorage.getItem('un_todos')) || [];
+    // let fin_todos = JSON.parse(localStorage.getItem('fin_todos')) || [];
+
+
     $('.todo_button').click(function(){
         if ($('#todo_input').val()){
-            genNewTodo($('#todo_class').val(), $('#todo_input').val())
+            let obj = genNewTodo($('#todo_class').val(), $('#todo_input').val());
+            todos.push(obj);
+            save(todos);
             $('#todo_input').val('');
         }
     })
@@ -174,36 +218,65 @@ $(function(){
     })
 
 
+    // 根据输入的jq对象，找到属性列表中对应的属性对象
+    function findJsonObj($li){
+
+        for(let i=0; i<todos.length; i++){
+            if($li.attr('data-label') == todos[i].label &&
+            $li.attr('data-value') == todos[i].value &&
+            $li.attr('data-time') == todos[i].time &&
+            $li.attr('data-status') == todos[i].status){
+                return i;
+            }
+        }
+        return -1;
+    }
+
+
 
     $('.submit_class').click(function(){
         if ($('.unfinish_list').children().length){
             let $checked = $('.todo_check:checked');
             // 对每一个都调用
             $checked.each(function(){
+                // 找到所在的列表项
                 let $li = $(this).parentsUntil('.unfinish_list').eq(1);
+                let  obj_index = findJsonObj($li);
+                // console.log(obj_index);
+                todos[obj_index].status = 1;
+                save(todos);
+
                 // 因为删除元素，需要通过选择器来指定，所以添加一个类表示已经选择
                 $li.addClass('selected');
                 $('.unfinish_list').remove('.selected');
-                $('.finished_list').append($li);
+                
                 // 取消已选中状态，利用删除属性来实现
                 $(this).removeAttr('checked');
+                $li.removeClass('selected');
+                $('.finished_list').append($li);
+
+
             })
         }
     })
 
     $('.delete_class').click(function(){
         let $checked = $('.finished_list .todo_check:checked');
-        // console.log($checked);
+        console.log($checked.length);
+        
         // 先删除完成的
         $checked.each(function(){
             let $li = $(this).parentsUntil('.finished_list').eq(1);
-            
             // 因为删除元素，需要通过选择器来指定，所以添加一个类表示已经选择
             $li.addClass('selected');
             // $li.css('display', 'none');
+            let  obj_index = findJsonObj($li);
+            todos.splice(obj_index, 1);
+            save(todos);
             
         })
         $('.selected').remove();
+
         // 下面这个方法这里无法删除 原因未知
         // $('.finished_list').remove('.selected');
         $checked = $('.unfinish_list .todo_check:checked');
@@ -216,6 +289,9 @@ $(function(){
                     let $li = $(this).parentsUntil('.unfinish_list').eq(1);
 
                     $li.addClass('selected');
+                    let  obj_index = findJsonObj($li);
+                    todos.splice(obj_index,1);
+                    save(todos);
                 })
                 $('.selected').remove();
             }
@@ -224,30 +300,39 @@ $(function(){
         
     })
 
-    // 生成一个待办事项
-    function genNewTodo(label, value){
+    // 生成一个待办事项 status表示是否完成，用数字表示是因为布尔值在字符串容易出问题
+    function genNewTodo(label, value, time=null, status=0){
         let $li = $(`<li></li>`);
         $li.addClass('todo_list_item');
         // 添加列表项的第一行
         let $span = $(`<span></span>`);
         $span.addClass('todo_item_title');
         $span.append($(`<span>${label}</span>`));
+
         let $check = $(`<input type='checkbox'>`);
         $check.addClass('todo_check');
         let $show = $(`<span></span>`);
         $show.addClass('triangle');
+        // 记录当前是展开还是收起状态
         $show.attr('data-click', false);
+
         console.log($show.attr('data-click'));
         $span.append($show);
         $span.append($check);
         
         let $div = $(`<div>${value}</div>`);
-        let now_time = getformatTime();
+
+        let now_time;
+        if(!time){
+            time = getformatTime();
+        }
+        now_time = time;
+
         $div.append($(`<p>${now_time}</p>`));
         $div.addClass('todo_divbox');
         $li.append($span);
         $li.append($div);
-
+        // 下拉展示
         $show.click(function(){
             if ($(this).attr('data-click') === 'false'){
                 $li.children().eq(1).stop().slideDown();
@@ -268,16 +353,31 @@ $(function(){
                 })
             }
         })
+        // 将这个列表项的信息作为属性保存，方便访问
+        $li.attr('data-label', label);
+        $li.attr('data-value', value);
+        $li.attr('data-time', now_time);
+        $li.attr('data-status', status);
 
-        if ($check)
+        if(status == 0){   
+            $('.unfinish_list').prepend($li);
+        }
+        else {
+        $('.finished_list').prepend($li);
 
-        // $('body').delegate($('span.traingle'), 'click', function(){
-        //     $li.children().eq(1).slideDown();
-        //     console.log(1);
-        // })
-        $('.unfinish_list').prepend($li);
-        
+        }
+        // 返回该事项的信息对象
+        return {
+            label,
+            value,
+            time: now_time,
+            status,
+        };
     }
+
+
+
+
 
     /*
     *@return year:month:day hour:minute 
@@ -286,7 +386,7 @@ $(function(){
         
         let now = new Date();
         let res = now.getFullYear() + '.' + (now.getMonth()+1) + '.' + now.getDate() +
-                 ' ' + now.getHours() + ':' + now.getMinutes();
+                 ' ' + now.getHours() + ':' + (now.getMinutes()>=10? now.getMinutes(): '0'+now.getMinutes());
         return res;
     }
 
