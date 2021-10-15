@@ -211,7 +211,7 @@ $(function(){
 
     $('.todo_button').click(function(){
         if ($('#todo_input').val()){
-            let obj = genNewTodo($('#todo_class').val(), $('#todo_input').val());
+            let obj = genNewTodo($('#todo_id').val(), $('#todo_input').val());
             todos.push(obj);
             save(todos);
             $('#todo_input').val('');
