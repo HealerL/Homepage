@@ -158,6 +158,16 @@ $(function(){
         $('.pointer').children().eq(img_index).addClass('current_point');
     })
 
+
+    $('.todo_button').mousedown(function(){
+        $(this).css('border', '3px solid white');
+    })
+    $('.todo_button').mouseup(function(){
+        $(this).css('border', '3px solid transparent');
+    })
+
+
+
     let todos = gennerateTodo_storage();
     // 不会实时更新，所以每次都要保存localStorage
     function gennerateTodo_storage(){
@@ -180,7 +190,6 @@ $(function(){
         // }
     }
 
-    console.log(todos);
     // 界面刷新时自动载入之前的数据
     function reload(todos){
         todos.forEach(obj => {
@@ -405,7 +414,7 @@ $(function(){
         $(this).css('border', '2px solid black');
     })
     $('#code_show').mouseup(function(){
-        $(this).css('border', 'none');
+        $(this).css('border', '2px solid transparent');
     })
     
     
