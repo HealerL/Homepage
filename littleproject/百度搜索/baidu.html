@@ -1,0 +1,154 @@
+<html>
+    <head>
+        <meta charset='utf-8'>
+        <title>百度一下你就知道</title>
+        <link rel="stylesheet" type="text/css" href="baidu.css">
+    </head>
+    <body>
+        <div id="header">
+            <div class="headleft">
+                <ul>
+                    <li><a href="#">新闻</a></li>
+                    <li><a href="#">hao123</a></li>
+                    <li><a href="#">地图</a></li>
+                    <li><a href="#">直播</a></li>
+                    <li><a href="#">视频</a></li>
+                    <li><a href="#">贴吧</a></li>
+                    <li><a href="#">学术</a></li>
+                    <li><a href="#">更多</a>
+                        <div id="extra_menu">
+                            <div class="top">
+                                <ul>
+                                    <li><a href="#"><img src="images/baiduyun.png"><p>网盘</p></a></li>
+                                    <li><a href="#"><img src="images/zhidao.png"><p>知道</p></a></li>
+                                    <li><a href="#"><img src="images/baike.png"><p>百科</p></a></li>
+                                    <li><a href="#"><img src="images/tupian.png"><p>图片</p></a></li>
+                                </ul>
+                            </div>
+                            <div class="bottom">
+                                <ul>
+                                    <li><a href="#"><img src="images/baobaozhidao.png"><p>宝宝知道</p></a></li>
+                                    <li><a href="#"><img src="images/wenku.png"><p>文库</p></a></li>
+                                    <li><a href="#"><img src="images/jingyan.png"><p>经验</p></a></li>
+                                    <li><a href="#"><img src="images/yinyue.png"><p>娱乐</p></a></li>
+                                </ul>
+                            </div>
+                               
+                            <p><a href="#">查看更多百度产品></a></p>
+                        </div>
+                </li>
+             </ul>
+            </div>
+            <div id="headright">
+                <ul>
+                <li id="liweather"><a href="#">查看天气信息 </a>
+                    <div id="weather">
+                        <form action="#" method="GET" id ="weather_form">
+                            <p>请选择当前地区：</p>
+                            <select name="weather" id="weather_search">
+                                <option value=" " selected>本地天气</option>
+                                <option value="">北京</option>
+                                <option value="">上海</option>
+                                <option value="">西安</option>
+                            </select>
+                            <input type="checkbox" id="badweather" name="badweather" checked="checked"  value="极端天气提醒"/>
+                            <label for="badweather">极端天气提醒</label>
+                            <p id="notice">出现大雨，大雪或冰雹等极端天气时，我们将在百度首页通知您</p>
+                            <div id="sub_mit">
+                                <input type="reset" id="reset1" value ="取消"/>
+                                <input type="submit" id="submit" value="提交"/>
+                            </div>
+                        </form>
+                    </div>
+               </li>
+                <li><a href="#">设置</a></li>
+                <li><a><img src="images/image5.jpg">156*****715</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="search">
+            <a href="#"><img src="images/baidu.png"/></a>
+            <div id="inputdata">
+                <form action="https://www.baidu.com/s" method="GET">
+                    <input type="text" id="text"/><input type="submit" id="baidu" value="百度一下">
+                </form> 
+                
+            </div>
+        </div>
+        <div id="main">
+           
+                <div class="mainhead">
+                    <div><a href="#">我的关注</a></div>
+                    <div><a href="#">推荐</a></div>
+                    <div><a href="#">导航</a></div>
+                    <div id="hot_title">
+                        <span id="baiduresou"><a href="#" target="_blank">百度热搜</a></span>
+                        <span id="change"><a href="#"><i></i>换一换</a></span>
+                    </div>
+                </div>
+            <div id="wrapper">
+
+            
+                <div class="recommend">
+                    <div class="news" id="news1">
+                        
+                            <a href="#" id="new1title" title="人大，武大毕业卷香烟，流水线上研究生超30%，卷烟厂：他们自己要来的"><h3>人大，武大毕业卷香烟，流水线上研究生超30%，卷烟厂：...</h3></a>
+                        <div class="newsimage">    
+                            <a href="#"><img src="images/smoke1.jpeg"/></a>
+                            <a href="#"><img src="images/smoke2.jpeg"/></a>
+                            <a href="#"><img src="images/smoke3.jpeg"/></a>
+                          
+                        </div>
+                        <div class="source">
+                            <span class="resource">时代周报</span><span class="time">07-13 17:12</span>
+                        </div>
+                    </div>
+                    <div class="news" id="news2"> 
+                        <a href="#" id="new1title" title="苏州坍塌酒店房客：入住后嫌装修噪音大出去吃面，回来楼塌了"><h3>苏州坍塌酒店房客：入住后嫌装修噪音大出去吃面，回来楼塌了</h3></a>
+                        <div class="newsimage">
+                            <a href="#"><img src="images/suzhou1.jpeg"/></a>
+                            <a href="#"><img src="images/suzhou2.jpeg"/></a>
+                            <a href="#"><img src="images/suzhou3.jpeg"/></a>
+                        </div>
+                        <div class="source">
+                            <span class="resource">新京报</span><span class="time">07-14 01:50</span>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="hot">
+
+                    <div id="list">
+                        <ul>
+                            <li><a href="#"><span class="listindex hot_index1">1</span>新乡一产妇第三胎生下龙凤四胞胎<span class="re">热</span><span class="data"></span></a><span class="data">490万</span></li>
+                            <li><a href="#"><span class="listindex hot_index2">2</span>央视主播提醒有些人别动歪脑筋<span class="re">热</span></a><span class="data">486万</span></li>
+                            <li><a href="#"><span class="listindex hot_index3">3</span>苏州酒店坍塌事故致17人遇难<span class="re">热</span></a><span class="data">479万</span></li>
+                            <li><a href="#"><span class="listindex">4</span>陕西榆林关停中小学学科类校外培训<span class="re">热</span></a><span class="data">464万</span></li>
+                            <li><a href="#"><span class="listindex">5</span>东奥乒乓球赛不许手触球台或吹球<span class="re">热</span></a><span class="data">459万</span></li>
+                            <li><a href="#"><span class="listindex">6</span>郭刚堂认亲后首发声 连说5个感谢</a><span class="data">449万</span></li>
+                            <li><a href="#"><span class="listindex">7</span>网红当大学老师遭质疑？本人回应<span class="re">热</span></a><span class="data">438万</span></li>
+                            <li><a href="#"><span class="listindex">8</span>南非暴力抗议已致72死</a><span class="data">428万</span></li>
+                            <li><a href="#"><span class="listindex">9</span>B站就服务器故障致歉<span class="re">热</span></a><span class="data">413万</span></li>
+                            <li><a href="#"><span class="listindex">10</span>失孤原型儿子：决定留在养父母身边</a><span class="data">401万</span></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <footer>
+            <p class='lh'><a href="#">设为首页</a></p>
+            <p class='lh'><a href="#">关于百度</a></p>
+            <p class='lh'><a href="#">About Baidu</a></p>
+            <p class='lh'><a href="#">使用百度前必读</a></p>
+            <p class='lh'><a href="#">意见反馈</a></p>
+            <p class='lh'><a href="#">帮助中心</a></p>
+            <p class='lh'><a href="#">京公网安备</a></p>
+            <p class='lh'><a href="#">京ICP证</a></p>
+            <p class='lh'>@2021百度</p>
+            <p class='lh'><a href="#">经营性</a></p>
+            <p class='lh'><a href="#">信息网络传播视听节目许可</a></p>
+        </footer>
+       
+    </body>
+</html>

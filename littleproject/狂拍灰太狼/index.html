@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://code.jquery.com/jquery-1.12.4.js" integrity="sha256-Qw82+bXyGq6MydymqBxNPYTaUXXq7c8v3CwiYwLLNXU=" crossorigin="anonymous"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+        /* 背景盒子 */
+        .box {
+            position: relative;
+            width: 320px;
+            height: 480px;
+            background-image: url('images/game_bg.jpg');
+            margin: 100px auto;
+        }
+        /* 得分 */
+        .point {
+            margin-left: 80px;
+            color: white;
+        }
+        /* 进度条 */
+        .time {
+            position: absolute;
+            left: 63px;
+            top: 66px;
+            width: 180px;
+            height: 16px;
+            /* 边框圆滑处理，使进度条减少时保持右侧圆滑 */
+            border-radius: 16px;
+            overflow: hidden;
+            background-image: url('images/progress.png');
+        }
+        /* 开始按钮 */
+        .start {
+            cursor: pointer;
+            position: absolute;
+            top: 300px;
+            left: 80px;
+            width: 160px;
+            height: 60px;
+            background: linear-gradient(#E55C3D, #C50000);
+            color: white;
+            text-align: center;
+            border: none;
+            border-radius: 30px;
+            font-size: 20px;
+        }
+        /* 游戏规则提示 */
+        .ruleitem {
+            position: absolute;
+            bottom: -20px;
+            height: 20px;
+            line-height: 20px;
+            width: 320px;
+            text-align: center;
+            background-color: darkgrey;
+            cursor: pointer;
+        }
+        /* 游戏规则界面 */
+        .rulebox {
+            display: none;
+            width: 320px;
+            height: 480px;
+            background-color: rgba(0,0,0,0.6);
+            position: absolute;
+            top: 0;
+            left: 0;
+            color: #ddd;
+            text-align: center;
+            padding-top: 120px;
+            box-sizing: border-box;
+            z-index: 10;
+        }
+
+        .rulebox p {
+            margin-bottom: 20px;
+        }
+        /* 关闭按钮 */
+        a.close{
+            color: red;
+        }
+        /* 游戏结束界面 */
+        .mask {
+            display: none;
+            padding-top: 100px;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.5);
+            position: absolute;
+            top: 0;
+            left: 0;
+            box-sizing: border-box;
+            text-align: center;
+        }
+
+        .mask h1 {
+            color: salmon;
+            text-shadow: 3px 3px 0 snow;
+            font-size: 40px;
+            margin-bottom: 147px;
+        }
+        .mask button {
+            width: 160px;
+            height: 60px;
+            background: linear-gradient(#74ACCF, #007ddc);
+            color: white;
+            text-align: center;
+            border: none;
+            border-radius: 30px;
+            font-size: 20px;
+            cursor: pointer;
+        }
+
+
+    </style>
+    <!-- <script src="onewolf.js"> </script> -->
+    <script src="multiwolf.js"> </script>
+</head>
+
+<body>
+    <div class="box">
+        <h1 class="point">0</h1>
+        <div class="time">
+            <img src="images/progress.png" alt="" class="time">
+        </div>
+        
+        <button class="start">开始游戏</button>
+        <div class="ruleitem">游戏规则</div>
+        <div class="rulebox">
+            <p>游戏规则</p>
+            <p>1.游戏时间60s</p>
+            <p>2.拼手速，殴打灰太狼+10分</p>
+            <p>3.殴打小灰灰 -10分</p>
+            <a class="close" href="#">[关闭]</a>
+        </div>
+        <div class="mask">
+            <h1>GAME OVER</h1>
+            <button class="restart">重新开始</button>
+        </div>
+
+    </div>
+</body>
+</html>

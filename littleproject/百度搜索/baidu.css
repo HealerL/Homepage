@@ -1,0 +1,541 @@
+body {
+    font-family: "helevetica", arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    color: black;
+    background-color: #fff;
+    width: 100%;
+    /* 设置最小宽度，使得浏览器窗口缩小布局也不会发生太大变化 */
+    min-width: 1000px;
+}
+
+#header {
+    position: relative;
+    font-size: 0.8em;
+    /* 虽然在这里设定了内边距，但对其内部元素进行绝对定位时，会脱离元素流，会覆盖到该内边距，所以要对内部元素重新赋值内边距 */
+    padding-left: 24px;
+    padding-right: 24px;
+    background-color:  #fff;
+    /* 设置固定宽度而不是100%可以防止布局随浏览器窗口大小改变而变化 */
+    width: 100%;
+    box-sizing: border-box;
+    /* 设置一个高度，左右成为整体 */
+    height: 60px;
+}
+
+.headleft {
+    position: absolute;
+    top:0%;
+    left:0%;
+    width: 520px;
+    margin: 0px;
+
+}
+#header ul {
+    overflow: hidden;
+    display: inline-block;
+    margin: 0px;
+    
+ 
+}
+
+#header li {
+   float: left;
+   font-style: normal;
+   margin: 19px 31px 0 0;
+   padding-bottom: 20px;
+   list-style-type: None;
+   text-align: center;
+   line-height: 1.2;
+}
+
+#header a {
+    color: black;
+    text-decoration: None;
+    position: relative;
+}
+
+#header a:hover {
+    color: blue;
+}
+
+.headleft li > div {
+    float: none;
+    visibility: hidden;
+    opacity: 0;
+    position: absolute;
+    top: 100%;
+    right: 0%;
+    z-index: 10;
+    width: 324px;
+    margin: 0px;
+    border: blueviolet 3px;
+    box-shadow: 0px 0px 3px 1px #555;
+    border-radius: 10px;
+    /* 不加背景会透明 */
+    background-color: #fff;
+}
+
+.headleft li:hover div {
+    visibility: visible;
+    opacity: 1;
+    
+}
+
+/* .headleft div {
+    margin: 0;
+    padding: 0;
+    z-index: 10;
+
+} */
+
+#extra_menu {
+    padding-top: 16px;
+
+}
+
+
+#extra_menu ul {
+    /* width: 100%; */
+    margin: 0;
+    text-align: center;
+    padding:0;
+}
+
+#extra_menu ul li {
+    display: inline;
+    margin: 0 16px;
+    padding: 0;
+    font-size: 0.9em;
+}
+
+/* #extra_menu ul li:last-child {
+    margin-right: 0;
+} */
+
+
+#extra_menu img {
+    width: 44px;
+}
+
+#headright {
+    position: absolute;
+    top: 0;
+    right: 0;
+    margin:0px;
+    height: 60px;
+    text-align: right;
+    padding-right: 24px;
+    /* vertical-align: middle; */
+    width: 400px;
+}
+
+#headright ul {
+    text-align: center;
+    /* vertical-align: middle; */
+}
+
+#headright li {
+    float: left;
+    margin: 19px 0 0 31px;
+    padding-bottom: 20px;
+    /* 为图片和文字同时加这个属性使得他们在中间对齐 */
+    vertical-align: middle;
+    line-height: 19px;
+}
+
+#headright img {
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    vertical-align: middle;
+}
+
+#headright li:last-child {
+    display: inline;
+    margin-top: 17px;
+    white-space: nowrap;
+}
+
+
+/* #liweather {
+    position: relative;
+} */
+
+#headright li>div {
+    float: none;
+    position: absolute;
+    top:100%;
+    right: 50%;
+    visibility: hidden;
+    opacity: 0;
+    z-index: 100;
+    font-size: 1em;
+    margin: 0px;
+    width: 400px;
+    height: 180px;
+    padding: 10px 10px 10px 10px;
+    border: blueviolet 3px;
+    box-shadow: 0px 0px 3px 1px #555;
+    border-radius: 10px;
+    /* 不加背景会透明 */
+    background-color: #fff;
+    text-align: left;
+  
+}
+
+#headright li:hover >div {
+    visibility: visible;
+    opacity: 1;
+    /* position: absolute;
+    top: 100%;
+    right: 0;
+    background-color: #fff; */
+}
+
+#weather_search {
+    display: block;
+    margin-bottom: 10px;
+    cursor: pointer;
+
+}
+
+#notice {
+    padding: 0 10px 10px 0;
+    color: #555;
+    font-size: 0.8em;
+    vertical-align: middle;
+    
+
+}
+#badweather {
+    vertical-align: middle;
+    margin-top: 2px;
+}
+
+
+#reset1 {
+
+    width: 85px;
+    height: 40px;
+    background-color: #c4c7ce;
+    color: #000;
+    border-radius: 10px;
+    border:transparent;
+
+}
+
+
+#submit {
+    margin-left: 20px;
+    width: 85px;
+    height: 40px;
+    background-color: #4e6ef2;
+    color: #fff;
+    border:transparent;
+    border-radius: 10px;
+}
+
+#weather input:hover {
+    cursor: pointer;
+}
+
+.search {
+
+    width: 100%;
+    margin: 0 auto;
+    padding: 0;
+    text-align: center;
+
+}
+
+.search img {
+    display: inline;
+    padding: 100px 0 0 0;
+    width: 300px;
+    cursor: pointer;
+
+}
+
+
+#inputdata {
+
+    overflow: hidden;
+    margin-top: 40px;
+    width: 600px;
+    padding: 0;
+    display: block;
+    margin: 0 auto;
+
+}
+
+#inputdata form {
+    width: 596px;
+    margin: auto;
+    text-align: center;
+}
+
+#text {
+    /* 输入框 */
+    /* display: inline; */
+    /* position: relative; */
+    float: left;
+    border: 2px solid;
+    border-color: #c4c7ce #4e6ef2 #c4c7ce #c4c7ce;
+    outline: none;
+    border-radius: 10px 0 0 10px;
+    box-sizing: border-box;
+    height: 44px ;
+    width: 480px;
+    font-size: 20px;
+    line-height: 30px;
+    padding: 12px 48px 12px 16px;
+    margin:0;
+}
+
+#baidu {
+     /* 确认按钮 */
+    cursor: pointer;
+    /* position: absolute; */
+    float: left;
+    /* display: inline; */
+    background-color: #4e6ef2;
+    outline: none;
+    border: none;
+    border-radius: 0 10px 10px 0;
+    box-sizing: border-box;
+    height: 44px;
+    width: 108px;
+    font-size: 17px;
+    font-weight: 400;
+    color: #fff;
+    line-height: 40px;
+    padding: 0;
+    margin-left: -2px;
+    z-index: 10;
+
+}
+
+
+footer {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    height: 30px;
+    font-size: 0.8em;
+    text-align: center;
+    /* 不随窗口缩小而换行 */
+    white-space:nowrap;
+    background-color: white;
+    padding-top: 10px;
+    
+}
+
+.lh {
+    display: inline;
+    margin-right: 24px;
+    color: #c4c7ce;
+}
+
+.lh a {
+    text-decoration: none;
+    color: #c4c7ce;
+}
+
+.lh a:hover {
+    color: #000;
+}
+
+#main {
+    width: 1000px;
+    margin: 100px auto;
+    background-color: #fff;
+    overflow: hidden;
+}
+
+#wrapper {
+    position: relative;
+    padding-top: 10px;
+}
+
+.mainhead {
+    padding: 20px 0 10px 0;
+    position: relative;
+}
+
+.mainhead div {
+    display: inline-block;
+    margin-right: 20px;
+    font-size: 0.8em;
+    padding-bottom: 10px;
+    /* border: 2px solid transparent;  */
+}
+
+.mainhead a {
+    padding-bottom: 5px;
+    text-decoration: none;
+    color: #555;
+}
+
+.mainhead a:hover {
+    color: black;
+    border-bottom: 2px solid #4e6ef2;
+}
+
+.news {
+    width: 650px;
+    padding: 10px 0;
+    height: 220px;
+    color: #555;
+}
+
+.news a {
+    text-decoration: none;
+    color: #555;
+}
+
+.news a:hover {
+    cursor: pointer;
+    color: #4e6ef2;
+}
+
+.news img {
+    width: 183px;
+    height: 122px;
+    padding: 0px;
+}
+
+.newsimage a:first-child img {
+    border-radius: 10px 0 0 10px;
+}
+
+.newsimage a:last-child img {
+    border-radius: 0 10px 10px 0;
+}
+
+.news span {
+    font-size: 0.8em;
+    margin-right: 10px;
+}
+
+#hot_title {
+    position: absolute;
+    top:0;
+    right: 0;
+    width: 330px;
+    padding: 0;
+    margin: 0;
+}
+
+#baiduresou {
+    position: absolute;
+    top:0;
+    left:0;
+    padding: 20px 0 5px 0;
+    vertical-align: middle;
+}
+
+#change {
+    position: absolute;
+    top:0;
+    right:0;
+    padding: 18px 0 5px 0;
+    vertical-align: middle;
+}
+
+#change i {
+    font-size: 1em;
+    vertical-align: middle;
+}
+
+.hot {
+    position: absolute;
+    top:0;
+    right: 0;
+    width: 350px;
+}
+
+#list ul {
+    list-style: none;
+    padding-left: 35px;
+}
+
+.listindex {
+    display: inline-block;
+    width: 15px;
+    height: 15px;
+    color: #c4c7ce;
+
+    /* padding:0 1em 0 0; */
+    /* 与标题对齐 */
+    margin: 0 1em  0 -1em;
+}
+
+#list li {
+    position: relative;
+    padding-bottom: 20px;
+   /* vertical-align: middle; */
+}
+
+.listindex.hot_index1 {
+    color: #fe2d46;
+}
+.listindex.hot_index2 {
+    color: #f60;
+}
+.listindex.hot_index3 {
+    color: #faa90e;
+}
+
+/* #list li::before{
+    content: counter(li);
+    color: red;
+    display: inline-block;
+    width: 1em;
+    margin-left: -1.5em;
+    margin-right:  0.5em;
+    text-align: right;
+    direction: rtl;
+} */
+
+/* #list li:first-child ::before{
+    content: counter(li);
+    color: red;
+    display: inline-block;
+    width: 1em;
+    margin-left: -1em;
+
+} */
+
+
+
+
+#list a {
+    text-decoration: none;
+    color: #555;
+    font-size: 0.9em;
+}
+#list a:hover {
+    cursor: pointer;
+    color: #4e6ef2;
+}
+
+span.re {
+
+    margin-left: 10px;
+    padding:2px 2px 2px 2px;
+    background-color: orangered;
+    text-align: center;
+    /* vertical-align: middle; */
+    color: white;
+    border-radius: 5px;
+
+}
+
+span.data {
+    position: absolute;
+    right: 0;
+    font-size: 0.9em;
+    color:#c4c7ce;
+    text-align: right;
+}
