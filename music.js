@@ -198,11 +198,11 @@ window.onload = function(){
      let audioPlay = audioControl[1];
      audioPlay.addEventListener('click', function(){
          if (audio.paused){
-             audio.play();
-             this.children[0].src = 'img/stop.jpg';
-             rotateImg.startRotate();
-             p_bar.Start();
-             timeobject.timeCount();
+            audio.play();
+            this.children[0].src = 'img/stop.jpg';
+            rotateImg.startRotate();
+            p_bar.Start();
+            timeobject.timeCount();
  
  
          }
@@ -237,6 +237,7 @@ window.onload = function(){
          // 修改音乐时间
          convertTime(left_time, 0);
          convertTime(right_time, music_time_list[music_index]);
+         timeobject.timeCount();
      })
      // 前进
      let audioNext = audioControl[2];
@@ -258,6 +259,7 @@ window.onload = function(){
          p_bar.Start();
          convertTime(left_time, 0);
          convertTime(right_time, music_time_list[music_index]);
+         timeobject.timeCount();
      })
  
      // 音量控制
