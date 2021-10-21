@@ -330,7 +330,14 @@ $(function(){
         $span.append($show);
         $span.append($check);
         
-        let $div = $(`<div>${value}</div>`);
+        
+        // let $div = $(`<div>${value}</div>`);
+        // 处理输出值转义不完全问题
+        let $div = $(`<div></div>`);
+        $div[0].innerText = value;
+
+
+        
 
         let now_time;
         if(!time){
