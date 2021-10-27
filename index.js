@@ -334,10 +334,9 @@ $(function(){
         // let $div = $(`<div>${value}</div>`);
         // 处理输出值转义不完全问题
         let $div = $(`<div></div>`);
-        $div[0].innerText = value;
+        // $div[0].innerText = value;
+        $div.text(value);
 
-
-        
 
         let now_time;
         if(!time){
